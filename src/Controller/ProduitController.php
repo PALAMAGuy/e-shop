@@ -14,15 +14,35 @@ use App\Form\PanierProduitType;
 use App\Repository\PanierProduitRepository;
 use App\Repository\PanierRepository;
 use App\Entity\Panier;
+use Doctrine\ORM\EntityManagerInterface;
 
 #[Route('/produit')]
 class ProduitController extends AbstractController
 {
     #[Route('/', name: 'app_produit_index', methods: ['GET'])]
-    public function index(ProduitRepository $produitRepository): Response
+    public function index(ProduitRepository $produitRepository,EntityManagerInterface $em): Response
     {
+
+        $produits = $produitRepository->findAll();
+        $research = null;
+
+        if(isset($_REQUEST['search-bar'])){
+
+            $research = $_REQUEST['search-bar'];
+
+            $produits = $em->getRepository(Produit::class)->createQueryBuilder('o')
+            ->andWhere('o.name LIKE :research')
+            ->setParameter('research', '%'. $research . '%')
+            ->getQuery()
+            ->getResult();
+
+            //$produits = $produitRepository->findBy(['name LIKE'=>"%" . $research . "%"]);
+        }
+
         return $this->render('produit/index.html.twig', [
-            'produits' => $produitRepository->findAll(),
+            'produits' => $produits,
+            'research' => $research
+
         ]);
     }
 

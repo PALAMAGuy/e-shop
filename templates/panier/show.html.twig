@@ -48,8 +48,8 @@
                                 <td style="text-align:center;vertical-align:middle;width:40%;font-weight:800;"><a href="/produit/{{ produit.article.id }}" style="color:black">{{ produit.article.name }}</a></td>
                                 <td style="text-align:center;vertical-align:middle">{{ produit.article.prix * produit.quantity }} €</td>
                                 <td style="text-align:center;vertical-align:middle">
-                                    <form id="form" method="post" action="/panier-produit/{{produit.id}}/add">
-                                        <input type="number" id="quantity" name="quantity" min="1" max="5" value="{{ produit.quantity }}">                                  
+                                    <form id="form{{produit.id}}" method="post" action="/panier-produit/{{produit.id}}/add">
+                                        <input class="nbInput" type="number" id="quantity" name="quantity" min="1" max="5" value="{{ produit.quantity }}">                                  
                                     </form>
                                 </td>
                                 <td style="text-align:center;vertical-align:middle">
@@ -97,11 +97,14 @@
 
 <script>
 
-/*
-    $( "input" ).change(function() {
-        document.forms["form"].submit();
+
+    $( ".nbInput" ).change(function() {
+
+        var id = $( this ).parent().attr('id');
+        document.forms[id].submit();
+
     });
-*/
+
 
     $( "#cmdButton" ).change(function() {
         document.forms["formCmd"].submit();

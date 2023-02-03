@@ -3,45 +3,87 @@
 {% block title %}Produit index{% endblock %}
 
 {% block body %}
-    <h1>Produit index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Prix</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Img</th>
-                <th>Nb_en_stock</th>
-                <th>Note</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for produit in produits %}
-            <tr>
-                <td>{{ produit.id }}</td>
-                <td>{{ produit.name }}</td>
-                <td>{{ produit.prix }}</td>
-                <td>{{ produit.title }}</td>
-                <td>{{ produit.description }}</td>
-                <td>{{ produit.img }}</td>
-                <td>{{ produit.nbEnStock }}</td>
-                <td>{{ produit.note }}</td>
-                <td>
-                    <a href="{{ path('app_produit_show', {'id': produit.id}) }}">show</a>
-                    <a href="{{ path('app_produit_edit', {'id': produit.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="container-fluid" id="mainFrame">
+        <div class="row">
+            <div class="col-2">
+            </div>
+            <div class="col-8 mainFrame" style="background-color:white">
+                <div class="row">
+                    <div class="col-2">
+                    </div>
+                    <div class="col-8">
+                        <p class="textLeftMenu">Nos produits</p>
+                    </div>
+                    <div class="col-2">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        {% for produit in produits %}
+                            <div class="row">
+                                <div class="col-12" style="border-top:1px solid rgb(225,225,225);border-bottom:1px solid rgb(225,225,225)">
+                                    <div class="row">
+                                        <div class="col-2" style="text-align:center">
+                                            <img src="/images/produit/{{ produit.img }}" width="auto" height="150px" style="margin-top:20px;margin-bottom:20px">
+                                        </div>
+                                        <div class="col-6">
+                                            <a class="disabled-link" href="{{ path('app_produit_show', {'id': produit.id}) }}"><p style="font-weight:800;margin-top:40px;font-size:18px;color">{{ produit.name }}</p></a>
+                                            <p style="color:grey">{{ produit.title }}</p>                                       
+                                            <p>
+                                                <span style="color:rgb(255,183,37)">
+                                                    {% for i in 1.. produit.note %}
+                                                        {% if produit.note > 0 %}
+                                                            <i class="fa-solid fa-star"></i>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </span>
+                                                <span style="color:rgb(175,175,175)">
+                                                    {% set nb = 5 - produit.note %}
+                                                    {% for i in 1.. nb %}
+                                                        {% if nb > 0 %}
+                                                            <i class="fa-solid fa-star"></i>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <div class="col-2" style="text-align:center">
+                                            {% if produit.nbEnStock > 0 %}
+                                                <img src="/images/dispo.png" width="auto" height="120px" style="margin-top:25px">
+                                            {% else %}
+                                                <img src="/images/ndispo.png" width="auto" height="120px" style="margin-top:25px">
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-2" style="text-align:center">
+                                            <p style="font-weight:800;margin-top:40px;font-size:25px;color:rgb(10,55,130);">{{ produit.prix }} €</p>
+                                            {% if produit.nbEnStock > 0 %}
+                                                <form id="form" method="post" action="/produit/{{produit.id}}/addOne">
+                                                    <input type="image" src="/images/dispoButton.png" style="width:auto; height:70px;" />                                
+                                                </form>
+                                            {% else %}
+                                                <img src="/images/ndispoButton.png" width="auto" height="70px">
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            no records found
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+            </div>
+        </div>
+    </div>
+    <p id="researchTest" style="display:none">{{ research }}</p>
 
-    <a href="{{ path('app_produit_new') }}">Create new</a>
+    <script>
+
+        document.getElementById("search-bar").value = document.getElementById("researchTest").innerHTML;
+
+    </script>
+
 {% endblock %}

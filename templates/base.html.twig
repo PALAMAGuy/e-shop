@@ -225,14 +225,16 @@
                             </div>
                             <div class="col-7">
                                 <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
+                                    <div class="input-group-prepend" style="width:25%">
                                         {{ render(controller(
                                             'App\\Controller\\MenuController::index'
                                         )) }}
                                     </div>
-                                    <input type="text" class="form-control" id="search-bar" placeholder="Cherche une marque, un produit, une catégorie...">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="search-button"><i class="fa-solid fa-magnifying-glass"></i></span>
+                                    <form id="formResearch" method="get" action="/produit" style="width:65%">
+                                        <input type="text" class="form-control" id="search-bar" name="search-bar" placeholder="Cherche une marque, un produit, une catégorie...">
+                                    </form>
+                                    <div class="input-group-prepend" style="width:10%">
+                                        <span class="input-group-text" id="search-button" style="cursor:pointer"><i class="fa-solid fa-magnifying-glass"></i></span>
                                     </div>
                                 </div>
                             </div>
@@ -357,6 +359,10 @@
                     document.getElementById("user-container").style.display = "none";
                 }
             );
+
+            $( "#search-button" ).click(function() {
+                document.forms["formResearch"].submit();
+            });
 
         </script>
 
