@@ -1,0 +1,115 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+    <style>
+
+    #footer {
+        display:none
+    }
+
+    #search-button , #search-bar , #search-filter,.containerHeaderBis{
+        display:none
+    }
+
+    #grpBtn{
+        display:none
+    }
+
+    </style>
+
+    <div class="container-fluid" style="margin-top:100px;position: absolute;">
+        <div class="row">
+            <div class="col-4">
+            </div>
+            <div class="col-4" style="min-width:566px">
+                <p class="textLeftMenu">création de compte</p>
+            </div>
+             <div class="col-4">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+            </div>
+            <div class="col-4" style="background-color:white;min-width:566px">
+                {{ form_start(registrationForm) }}
+                    
+                    <p class="textForm">Vos identifiants</p>
+
+                    <div class="form-group">
+                        {{ form_row(registrationForm.email , { 
+                            label: false,
+                            'attr': {'class': 'form-control' ,'placeholder':"Email"} 
+                        }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(registrationForm.plainPassword, {
+                            label: false,
+                            'attr': {'class': 'form-control','placeholder':"Mot de passe"}
+                        }) }}
+                    </div>
+
+                    <hr>
+                    <p class="textForm">Vos informations personnelles</p>
+
+                    <div class="form-group">
+                        {{ form_row(registrationForm.nom, {
+                            label: false,
+                            'attr': {'class': 'form-control','placeholder':"Nom de famille"}
+                        }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(registrationForm.prenom, {
+                            label: false,
+                            'attr': {'class': 'form-control','placeholder':"Prénom"}
+                        }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(registrationForm.anniversaire, {
+                            label: false,
+                            'attr': {'class': 'form-control','placeholder':"Votre anniversaire"}
+                        }) }}
+                    </div>  
+                    <div class="form-group">
+                        {{ form_row(registrationForm.sexe, {
+                            label: false,
+                            'attr': {'class': 'form-control'}
+                        }) }}
+                    </div>  
+                    <div class="form-check">
+                        {{ form_row(registrationForm.agreeTerms, {
+                            label: false,
+                            'attr': {'class': 'form-check-input'}
+                        }) }}
+                        <label class="form-check-label" for="exampleCheck1" style="font-size:12px">J'accepte de recevoir des informations et des offres promotionnelles exclusives</label>
+                    </div>
+                    <div class="form-group accBtnGroup" style="text-align:center;margin-top:20px;margin-bottom:20px">
+                        <button type="submit" class="btn btn-primary">Valider</button>
+                    </div>
+
+                {{ form_end(registrationForm) }}
+                <hr>
+                <p style="text-align:center;margin-top:15px;text-transform: uppercase;font-weight:900;color:grey">Déjà client ?</p>
+                <div class="form-group accBtnGroup" style="text-align:center">
+                    <a href="/login"><button type="button" class="btn btn-primary">Se connecter</button></a>
+                </div>
+            </div>
+            <div class="col-4">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+            </div>
+            <div class="col-4">
+                <p style="color: #0096c8;display: block;font-size: 14px;margin: 0 auto 70px;max-width: 320px;padding: 0;text-align: center;margin-top:30px">TechShop s'engage à garder ces informations strictement confidentielles.</p>
+                <p style="color: #969696;font-size: 12px;line-height: 18px;margin-bottom: 20px;">Les informations recueillies par GROUPE Techshop font l’objet d’un traitement destiné à la gestion de la relation client-prospect et aux opérations associées. <a href="#">Pour en savoir plus sur la gestion de vos données et vos droits.</a></p>
+            </div>
+            <div class="col-4">
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

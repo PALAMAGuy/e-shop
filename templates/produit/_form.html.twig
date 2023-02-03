@@ -1,0 +1,70 @@
+{{ form_start(form) }}
+
+   <div class="form-group">
+        {{ form_row(form.name , { 
+            label: false,
+            'attr': {'class': 'form-control' ,'placeholder':"Nom"} 
+        }) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_row(form.prix , { 
+            label: false,
+            'attr': {'class': 'form-control' ,'placeholder':"Prix"} 
+        }) }}
+    </div>
+
+   <div class="form-group">
+        {{ form_row(form.title , { 
+            label: false,
+            'attr': {'class': 'form-control' ,'placeholder':"Title"} 
+        }) }}
+    </div>
+
+   <div class="form-group">
+        {{ form_row(form.description , { 
+            label: false,
+            'attr': {'class': 'form-control' ,'placeholder':"Description","rows":"8"} 
+        }) }}
+    </div>
+
+   <div class="form-group">
+        {{ form_row(form.nb_en_stock , { 
+            label: false,
+            'attr': {'class': 'form-control', "type":"number" ,'placeholder':"Nombre en stock","min":"0"} 
+        }) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_row(form.note , { 
+            label: false,
+            'attr': {'class': 'form-control' ,'placeholder':"Note" ,"max":"5" ,"min":"0"} 
+        }) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_row(form.marque , { 
+            label: false,
+            'attr': {'class': 'form-control' ,'placeholder':"Marque",'style':'height:200px'} 
+        }) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_row(form.categorie , { 
+            label: false,
+            'attr': {'class': 'form-control' ,'placeholder':"Categorie"} 
+        }) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_row(form.photo , { 
+            label: false,
+            'attr': {'class': 'form-control' ,'placeholder':""} 
+        }) }}
+    </div>
+
+    <div class="form-group accBtnGroup" style="text-align:center;margin-top:20px;margin-bottom:20px">
+        <button class="btn btn-primary">{{ button_label|default('Valider') }}</button>
+    </div>
+
+{{ form_end(form) }}

@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CategorieProduit{% endblock %}
+
+{% block body %}
+
+    
+    <div class="container-fluid" id="mainFrame">
+        <div class="row">
+            <div class="col-2">
+            </div>
+            <div class="col-8 mainFrame">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><i class="fa-solid fa-house"></i> <a class="disabled-link" href="{{ path('app_groupe_produit_show', {'id': categorie_produit.type.groupe.id}) }}">{{ categorie_produit.type.groupe }}</a></li>
+                    <li class="breadcrumb-item"><a class="disabled-link" href="{{ path('app_type_produit_show', {'id': categorie_produit.type.id}) }}">{{ categorie_produit.type }}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ categorie_produit.name }}</li>
+                </ol>
+            </div>
+            <div class="col-2" style="text-align:center">
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('app_produit_new') }}"><button type="button" class="btn btn-outline-primary">Ajouter</button></a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+            </div>
+            <div class="col-8 mainFrame" style="background-color:white">
+                <div class="row">
+                    <div class="col-2">
+                    </div>
+                    <div class="col-8">
+                        <p class="textLeftMenu">Nos {{ categorie_produit.name }}</p>
+                    </div>
+                    <div class="col-2">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        {% for produit in produits %}
+                            <div class="row">
+                                <div class="col-12" style="border-top:1px solid rgb(225,225,225);border-bottom:1px solid rgb(225,225,225)">
+                                    <div class="row">
+                                        <div class="col-2" style="text-align:center">
+                                            <img src="/images/produit/{{ produit.img }}" width="auto" height="150px" style="margin-top:20px;margin-bottom:20px">
+                                        </div>
+                                        <div class="col-6">
+                                            <a class="disabled-link" href="{{ path('app_produit_show', {'id': produit.id}) }}"><p style="font-weight:800;margin-top:40px;font-size:18px;color">{{ produit.name }}</p></a>
+                                            <p style="color:grey">{{ produit.title }}</p>                                       
+                                            <p>
+                                                <span style="color:rgb(255,183,37)">
+                                                    {% for i in 1.. produit.note %}
+                                                        {% if produit.note > 0 %}
+                                                            <i class="fa-solid fa-star"></i>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </span>
+                                                <span style="color:rgb(175,175,175)">
+                                                    {% set nb = 5 - produit.note %}
+                                                    {% for i in 1.. nb %}
+                                                        {% if nb > 0 %}
+                                                            <i class="fa-solid fa-star"></i>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <div class="col-2" style="text-align:center">
+                                            {% if produit.nbEnStock > 0 %}
+                                                <img src="/images/dispo.png" width="auto" height="120px" style="margin-top:25px">
+                                            {% else %}
+                                                <img src="/images/ndispo.png" width="auto" height="120px" style="margin-top:25px">
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-2" style="text-align:center">
+                                            <p style="font-weight:800;margin-top:40px;font-size:25px;color:rgb(10,55,130);">{{ produit.prix }} €</p>
+                                            {% if produit.nbEnStock > 0 %}
+                                                <form id="form" method="post" action="/produit/{{produit.id}}/addOne">
+                                                    <input type="image" src="/images/dispoButton.png" style="width:auto; height:70px;" />                                
+                                                </form>
+                                            {% else %}
+                                                <img src="/images/ndispoButton.png" width="auto" height="70px">
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            no records found
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+            </div>
+        </div>
+    </div>
+
+    <!--
+
+        <a href="{{ path('app_categorie_produit_index') }}">back to list</a>
+
+        <a href="{{ path('app_categorie_produit_edit', {'id': categorie_produit.id}) }}">edit</a>
+
+        {{ include('categorie_produit/_delete_form.html.twig') }}
+
+    -->
+
+{% endblock %}

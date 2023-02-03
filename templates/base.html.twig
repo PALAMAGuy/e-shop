@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">            <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        {% endblock %}
+
+        {% block header %}
+
+        <style>
+
+            body{
+                background-color : rgb(240,240,240);
+            }
+
+            .containerHeader{
+                background-color : rgb(10,55,130);
+                height : 80px;
+                /*min-width:1600px*/
+
+            }
+
+            .containerHeaderBis{
+                margin-top:80px;
+                background-color : rgb(0,30,105);
+                height : 40px;
+    
+            }
+
+            .mainFrame{
+                min-width:1000px;
+                max-width:1500px;
+                margin: auto;
+            }
+
+            .form-control{
+                border-radius : 0px;
+                font-size: 13px;
+            }
+
+            #search-button , #search-bar , #search-filter{
+                height : 40px;
+                margin-top : 20px;
+                background-color :white;
+                border :1px solid white;
+                font-size: 13px;
+            }
+
+            #search-filter{
+                background-color : rgb(240,240,240);
+            }
+
+            #search-button{
+                font-size: 20px;
+            }
+
+            #grpBtn{
+                height:80px;
+                width:100%;
+            }
+            #grpBtn a{
+                border : rgb(10,55,130);
+                font-size : 30px;
+            }
+            #grpBtn button{
+                border : rgb(10,55,130);
+                background-color : rgb(10,55,130);
+                font-size : 30px;
+            }
+
+            #grpBtn span{
+                display:block;
+                color: rgb(192,203,223);
+                font-weight:900;
+                font-size: 11px;
+            }
+
+            #grpBtn button:hover span{
+                color: white;
+            }
+
+            #user-container{
+                position:fixed;
+                z-index: 1;
+                display:none;
+                background-color:white;
+                width: 15%;
+                right:18%;
+                border:1px solid rgb(175,175,175);
+            }
+
+            .btn-primary{
+                background-color:rgb(10,55,130);
+                border : 0px;
+            }
+
+            .btn-outline-primary{
+                border : 3px solid rgb(10,55,130);
+                border-radius :25px;
+                text-transform: uppercase;
+                color:rgb(10,55,130);
+                font-weight:700;
+                font-size : 14px;
+                padding:2px 20px;
+            }
+
+            .btn-outline-primary:hover{
+                color:white;
+                background-color:rgb(10,55,130);
+                border : 3px solid rgb(10,55,130);
+            }
+
+
+            .accBtnGroup button{
+                font-size:15px;
+                text-transform: uppercase;
+                font-weight:700;
+                border-radius :25px;
+                padding: 10px 20px
+            }
+
+            #page-container {
+                position: relative;
+                min-height: 100vh;
+            }
+
+            #content-wrap {
+                padding-bottom: 500px;    /* Footer height */
+            }
+
+            #footer {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                height: 500px;            /* Footer height */
+                background-color:rgb(10,55,130);
+                color:white
+            }
+
+            .form-control:focus {
+                border-color: inherit;
+                -webkit-box-shadow: none;
+                box-shadow: none;
+            }
+
+            .divRightMenu{
+                border-bottom:2px solid white;
+                padding:0;
+                text-align:center
+            }
+
+            .divLeftMenu{
+                border-bottom:2px solid rgb(225,225,225);
+                padding:0;
+                text-align:center;
+            }
+
+            .textRightMenu{
+                text-align:center;
+                margin-top:15px;
+                text-transform: uppercase;
+                font-weight:500;
+                font-size:20px;
+                color:rgb(80,80,80)
+            }
+
+            .textLeftMenu{
+                text-align:center;
+                margin-top:20px;
+                text-transform: uppercase;
+                font-weight:800;
+                font-size:25px;
+                color:rgb(150,150,150)
+            }
+
+            .textForm{
+                text-align:center;
+                margin-top:20px;
+                text-transform: uppercase;
+                font-weight:700;
+                font-size:20px;
+            }
+
+            .brandBtn button{
+                border:1px solid white;
+                color:red;
+            }
+
+            .breadcrumb{
+                background-color:transparent;
+                padding:0
+            }
+
+            #mainFrame{
+                margin-top:20px;
+                margin-bottom:40px;
+            }
+
+            .disabled-link{   
+                text-decoration: none;
+                color : rgb(10,55,130);
+            }
+
+            .breadcrumb{
+                font-size : 13px
+            }
+
+        </style>
+        
+        <div class="container-fluid containerHeader fixed-top">
+            <div class="row">
+             
+                    <div class="col-2">
+
+                    </div>
+                    <div class="col-8" style="min-width:1050px;max-width:1500px;margin: auto;">
+                        <div class="row">
+                            <div class="col-2">
+                                <a href="/"><img src="/images/logo.png" width="auto" height="80px" ></a>
+                            </div>
+                            <div class="col-7">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        {{ render(controller(
+                                            'App\\Controller\\MenuController::index'
+                                        )) }}
+                                    </div>
+                                    <input type="text" class="form-control" id="search-bar" placeholder="Cherche une marque, un produit, une catégorie...">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="search-button"><i class="fa-solid fa-magnifying-glass"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                {{ render(controller(
+                                    'App\\Controller\\MenuController::panier'
+                                )) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+
+                    </div>
+
+            </div>
+        </div>
+
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <div id="user-container" class="container">
+                <div class="row">
+                    <div class="col-12">
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <p style="text-align:center;margin-top:15px;text-transform: uppercase;font-weight:900;color:grey">Bonjour Admin</p>
+                        {% elseif is_granted('ROLE_USER') %}
+                            <p style="text-align:center;margin-top:15px;text-transform: uppercase;font-weight:900;color:grey">Bonjour {{ app.user.prenom }}</p>
+                        {% else %}
+                            <p style="text-align:center;margin-top:15px;text-transform: uppercase;font-weight:900;color:grey">Bonjour {{ app.user.prenom }}</p>
+                        {% endif %}
+                        <hr>
+                        <div class="form-group accBtnGroup" style="text-align:center">
+                            <a href="#"><button type="button" class="btn btn-primary">accéder à mon compte</button></a>
+                        </div>
+                        {% if not is_granted('ROLE_ADMIN') %}
+                            <div class="form-group accBtnGroup" style="text-align:center">
+                                <a href="/commande"><button type="button" class="btn btn-primary">mes commandes</button></a>
+                            </div>
+                        {% endif %}
+                        <a href="/logout"><p style="text-align:center">Me déconnecter</p></a>
+                    </div>
+                    <div class="col-12">
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div id="user-container" class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <p style="text-align:center;margin-top:15px;text-transform: uppercase;font-weight:900;color:grey">Déjà client ?</p>
+                        <hr>
+                        <form method="post" action="/login">
+                            <div class="form-group">
+                                <input type="email" name="email" id="inputEmail" class="form-control" autocomplete="email" placeholder="Votre email" required autofocus>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" placeholder="Mot de passe" required>
+                            </div>
+                            <a href="#"><p style="text-align:center;font-size:12px">Vous avez oubliez votre mot de passe ?</p></a>
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                            <div class="form-group accBtnGroup" style="text-align:center">
+                                <button type="submit" class="btn btn-primary">Connexion</button>
+                            </div>
+                        </form>
+                        <div class="form-check" style="text-align:center;display:none">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" style="margin-top:7px;">
+                            <label class="form-check-label" for="exampleCheck1" style="font-size:12px">Rester connecté</label>
+                        </div>
+                        <hr>
+                        <p style="text-align:center;margin-top:15px;text-transform: uppercase;font-weight:900;color:grey">Nouveau client ?</p>
+                        <div class="form-group accBtnGroup" style="text-align:center">
+                            <a href="/register"><button type="button" class="btn btn-primary">Créez un compte</button></a>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="container-fluid containerHeaderBis">
+            <div class="row">
+                <div class="col-2">
+
+                </div>
+                <div class="col-8 mainFrame">
+                    {{ render(controller(
+                        'App\\Controller\\MenuController::btnList'
+                    )) }}
+                </div>
+                <div class="col-2">
+
+                </div>
+            </div>
+        </div>
+    
+        {% endblock %}
+
+        {% block javascripts %}
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+        {% endblock %}
+
+        <script>
+
+            $( "#userBtn" ).hover(
+                function() {
+                    console.log("hover");
+                    document.getElementById("user-container").style.display = "block";
+                }, function() {
+                    console.log("Not hover");
+                    document.getElementById("user-container").style.display = "none";
+                }
+            );
+
+            $( "#user-container" ).hover(
+                function() {
+                    console.log("hover");
+                    document.getElementById("user-container").style.display = "block";
+                }, function() {
+                    console.log("Not hover");
+                    document.getElementById("user-container").style.display = "none";
+                }
+            );
+
+        </script>
+
+    </head>
+    <body>
+        <div id="page-container">
+            <div id="content-wrap">
+                {% block body %}{% endblock %}
+            </div>
+            <div class="container-fluid" id="footer">
+                <div class="row" style="margin-bottom:40px;">
+                    <div class="col-2">
+                    </div>
+                    <div class="col-8 mainFrame">
+                        <p style="font-size:11px;margin-top:40px;">[1] Votre adresse de messagerie est uniquement utilisée pour vous envoyer notre lettre d'information ainsi que des informations concernant les activités du GROUPE LDLC. Vous pouvez à tout moment utiliser le lien de désabonnement intégré dans la newsletter.</p>
+                        <hr style=" border-top: 1px solid white;">
+                    </div>
+                    <div class="col-2">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

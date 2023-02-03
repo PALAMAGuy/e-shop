@@ -1,0 +1,6 @@
+<select class="form-control" id="search-filter">
+    <option value="all" selected>TOUS LES UNIVERS</option>
+    {% for groupe_produits in groupe_produits %}
+        <option value="{{ groupe_produits.id }}">{{ groupe_produits.name }}</option>
+    {% endfor %}
+</select>

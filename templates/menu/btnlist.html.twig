@@ -1,0 +1,25 @@
+<style>
+
+    .btnMenuBis button{
+        -webkit-appearance: none;
+        background-color : rgb(0,30,105);
+        border-radius:0px;
+        font-weight: 600;
+        height:40px;
+        text-transform: uppercase;
+    }
+
+    .btnMenuBis button:hover{
+        background-color : white;
+        border-radius:0px;
+        color : rgb(0,30,105);
+    }
+
+</style>
+<div class="text-center">
+    <div class="btn-group btnMenuBis"  role="group">
+        {% for groupe_produits in groupe_produits %}
+            <a href="{{ path('app_groupe_produit_show', {'id': groupe_produits.id}) }}"><button type="button" class="btn btn-primary" style="width:100%">{{ groupe_produits.name }}</button></a>
+        {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New TypeProduit{% endblock %}
+
+{% block body %}
+
+   <style>
+    
+        #user-container{
+            margin-top:80px;
+        }
+
+    </style>
+
+    <div class="container-fluid" id="mainFrame">
+        <div class="row">
+            <div class="col-2">
+            </div>
+            <div class="col-8 mainFrame">
+                <ol class="breadcrumb">
+                </ol>
+            </div>
+            <div class="col-2">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+            </div>
+            <div class="col-8 mainFrame" style="background-color:white">
+                <p class="textForm">Ajouter un type de produit</p>
+                    {{ include('type_produit/_form.html.twig') }}
+            </div>
+            <div class="col-2">
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

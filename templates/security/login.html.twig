@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <style>
+
+
+    #footer {
+        display:none
+    }
+
+    #search-button , #search-bar , #search-filter, .containerHeaderBis{
+        display:none
+    }
+
+    #grpBtn{
+        display:none
+    }
+
+    </style>
+
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="container-fluid" style="margin-top:100px;position: absolute;">
+            <div class="row">
+                <div class="col-12">
+                    <p class="textLeftMenu">You are logged in as {{ app.user.prenom }} {{ app.user.nom }}</p>
+                    <div class="form-group accBtnGroup" style="text-align:center;margin-top:20px;margin-bottom:20px">
+                        <a href="{{ path('app_logout') }}"><button class="btn btn-primary" type="submit">Se déconnecter</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="container-fluid" style="margin-top:100px;position: absolute;">
+            <div class="row">
+                <div class="col-4">
+                </div>
+                <div class="col-4" style="min-width:566px">
+                    <p class="textLeftMenu">se connecter</p>
+                </div>
+                <div class="col-4">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                </div>
+                <div class="col-4" style="background-color:white;min-width:566px">
+                    <p class="textForm">Vos identifiants</p>
+                    <form method="post">
+                        <div class="form-group">
+                            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" placeholder="Email" required autofocus>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" placeholder="Mot de passe" required>
+                        </div>
+                        <a href="#"><p style="text-align:center;font-size:12px">Vous avez oubliez votre mot de passe ?</p></a>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                        <div class="form-group accBtnGroup" style="text-align:center;margin-top:20px;margin-bottom:20px">
+                            <button class="btn btn-primary" type="submit">Valider</button>
+                        </div>
+                    </form>
+                    <hr>
+                    <p style="text-align:center;margin-top:15px;text-transform: uppercase;font-weight:900;color:grey">Nouveau client ?</p>
+                    <div class="form-group accBtnGroup" style="text-align:center">
+                        <a href="/register"><button type="button" class="btn btn-primary">Créez un compte</button></a>
+                    </div>
+                </div>
+                <div class="col-4">
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+
+{% endblock %}

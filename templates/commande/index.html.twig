@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande index{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid" id="mainFrame">
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8 mainFrame" style="background-color:white">
+            <div class="row">
+                <div class="col-2">
+                </div>
+                <div class="col-8">
+                    <p class="textLeftMenu">Mes commandes</p>
+                </div>
+                <div class="col-2">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Commande</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for commande in commandes %}
+                            <tr>
+                                <td style="vertical-align:middle">#{{ commande.id }}</td>
+                                <td style="vertical-align:middle">{{ commande.createdDate ? commande.createdDate|date('Y-m-d') : '' }}</td>
+                                <td style="vertical-align:middle">{{ commande.status }}</td>
+                                <td style="vertical-align:middle">
+                                    <div class="form-group accBtnGroup" style="vertical-align:middle">
+                                        <a href="{{ path('app_commande_show', {'id': commande.id}) }}"><button type="button" class="btn btn-primary">Voir</button></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="5">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+        </div>
+    </div>
+</div>
+
+<!-- 
+
+    <h1>Commande index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>CreatedDate</th>
+                <th>Status</th>
+                <th>Prix</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commande in commandes %}
+            <tr>
+                <td>{{ commande.id }}</td>
+                <td>{{ commande.createdDate ? commande.createdDate|date('Y-m-d') : '' }}</td>
+                <td>{{ commande.status }}</td>
+                <td>{{ commande.prix }}</td>
+                <td>
+                    <a href="{{ path('app_commande_show', {'id': commande.id}) }}">show</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+-->
+
+{% endblock %}

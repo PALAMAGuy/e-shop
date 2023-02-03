@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid" id="mainFrame">
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8 mainFrame" style="background-color:white">
+            <div class="row">
+                <div class="col-2">
+                </div>
+                <div class="col-8">
+                    <p class="textLeftMenu">Commande #{{ commande.id }}</p>
+                </div>
+                <div class="col-2">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="col-12" style="background-color:rgb(217,238,244);text-align:center">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th>Date</th>
+                                    <td>{{ commande.createdDate ? commande.createdDate|date('d/m/Y') : '' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Statut</th>
+                                    <td style="font-weight:bold;color:green">{{ commande.status }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Prix</th>
+                                    <td style="font-weight:bold">{{ total }} €</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <p class="textLeftMenu" style="color:black;font-size:18px">Liste des articles</p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th style="text-align:center">Designation</th>
+                                <th style="text-align:center">Prix</th>
+                                <th style="text-align:center">Quantité</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for commande_produits in commande_produits %}
+                            <tr>
+                                <td style="text-align:center">                                            
+                                    <img src="/images/produit/{{ commande_produits.article.img }}" width="auto" height="100px">
+                                </td>
+                                <td style="text-align:center;vertical-align:middle;width:40%;font-weight:800;"><a href="/produit/{{ commande_produits.article.id }}" style="color:black">{{ commande_produits.article.name }}</a></td>
+                                <td style="text-align:center;vertical-align:middle">{{ commande_produits.prix }} €</td>
+                                <td style="text-align:center;vertical-align:middle">{{ commande_produits.quantity }}</td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="2">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

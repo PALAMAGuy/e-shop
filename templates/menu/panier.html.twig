@@ -1,0 +1,22 @@
+<div class="btn-group" id="grpBtn" role="group" aria-label="Basic example">
+    <a href="#"><button type="button" class="btn btn-secondary"><i class="fa-solid fa-location-dot"></i><span>BOUTIQUES</span></button></a>
+    <a href="#" id="userBtn">
+        <button type="button" class="btn btn-secondary">
+            {% if is_granted('ROLE_ADMIN') %}
+                <i class="fa-solid fa-user-secret"></i>
+            {% elseif is_granted('ROLE_USER') %}
+                <i class="fa-solid fa-user-tie"></i>
+            {% else %}
+                <i class="fa-solid fa-user"></i>
+            {% endif %}
+            <span>COMPTE</span>
+        </button>
+    </a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="#"><button type="button" class="btn btn-secondary"><i class="fa-solid fa-cart-shopping"></i><span>PANIER</span></button></a>
+    {% elseif is_granted('ROLE_USER') %}
+        <a href="{{ path('app_panier_test_show') }}"><button type="button" class="btn btn-secondary"><i class="fa-solid fa-cart-shopping"></i><span>PANIER</span></button></a>
+    {% else %}
+        <a href="{{ path('app_login') }}"><button type="button" class="btn btn-secondary"><i class="fa-solid fa-cart-shopping"></i><span>PANIER</span></button></a>
+    {% endif %}
+</div>

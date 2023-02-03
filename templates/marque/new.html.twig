@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Marque{% endblock %}
+
+{% block body %}
+
+   
+    <div class="container-fluid" id="mainFrame">
+        <div class="row">
+            <div class="col-2">
+            </div>
+            <div class="col-8 mainFrame">
+                <ol class="breadcrumb">
+                    <!--
+                        <li class="breadcrumb-item"><a href="/marque"><i class="fa-solid fa-house"></i> Nos marques</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Ajouter</li>
+                    -->
+                </ol>
+            </div>
+            <div class="col-2">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+            </div>
+            <div class="col-8 mainFrame" style="background-color:white">
+                <p class="textForm">Ajouter une marque</p>
+                 {{ include('marque/_form.html.twig') }}
+            </div>
+            <div class="col-2">
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

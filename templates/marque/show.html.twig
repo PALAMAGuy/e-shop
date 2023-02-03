@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Marque{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid" id="mainFrame">
+        <div class="row">
+            <div class="col-2">
+            </div>
+            <div class="col-8 mainFrame">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/marque"><i class="fa-solid fa-house"></i> Nos marques</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ marque.name }}</li>
+                </ol>
+            </div>
+            <div class="col-2">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+            </div>
+            <div class="col-8 mainFrame" style="background-color:white">
+                <div class="row">
+                    <div class="col-5">
+
+                    </div>
+                    <div class="col-2">
+                        <img src="/images/marques/{{ marque.img }}" width="auto" height="80px" style="margin-top:20px;margin-bottom:20px">
+                    </div>
+                    <div class="col-5" style="text-align:center">
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <div class="btn-group" style="margin-top:40px;">
+                        <a href="{{ path('app_marque_edit', {'id': marque.id}) }}"><button type="button" class="btn btn-outline-primary" style="margin-right:5px;">éditer</button></a>
+                        {{ include('marque/_delete_form.html.twig') }}
+                        </div>
+                    {% endif %}
+                    </div>
+                </div>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>{{ marque.description |nl2br }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-2">
+            </div>
+        </div>
+    </div>
+    
+<script>
+
+</script>
+
+{% endblock %}

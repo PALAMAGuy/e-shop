@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CategorieProduit{% endblock %}
+
+{% block body %}
+
+   
+    <div class="container-fluid" id="mainFrame">
+        <div class="row">
+            <div class="col-2">
+            </div>
+            <div class="col-8 mainFrame">
+                <ol class="breadcrumb">
+                </ol>
+            </div>
+            <div class="col-2">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+            </div>
+            <div class="col-8 mainFrame" style="background-color:white">
+                <p class="textForm">Ajouter une catégorie de produit</p>
+                    {{ include('categorie_produit/_form.html.twig') }}
+            </div>
+            <div class="col-2">
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
