@@ -79,6 +79,12 @@ class ProduitController extends AbstractController
     #[Route('/{id}', name: 'app_produit_show', methods:  ['GET', 'POST'])]
     public function show(PanierRepository $panierRepository,Produit $produit,Request $request, PanierProduitRepository $panierProduitRepository): Response
     {
+        $user = $this->getUser();
+
+        if ($user == null) {
+            return $this->redirect('/login/');
+        }
+
         $panierProduit = new PanierProduit();
         $form = $this->createForm(PanierProduitType::class, $panierProduit);
         $form->handleRequest($request);
