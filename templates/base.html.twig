@@ -89,8 +89,8 @@
                 z-index: 1;
                 display:none;
                 background-color:white;
-                width: 15%;
-                right:18%;
+                width: 300px;
+                left:0px;
                 border:1px solid rgb(175,175,175);
             }
 
@@ -343,7 +343,14 @@
             $( "#userBtn" ).hover(
                 function() {
                     console.log("hover");
+                                        
+                    var position =  $(this).offset();    
+                    console.log(position.left);
+                    document.getElementById("user-container").style.left = position.left - 115 + "px";
                     document.getElementById("user-container").style.display = "block";
+                    console.log(document.getElementById("user-container").style.left);
+
+
                 }, function() {
                     console.log("Not hover");
                     document.getElementById("user-container").style.display = "none";
